@@ -1,0 +1,6 @@
+${AnsiColor.GREEN}:: Spring Boot :: ${spring-boot.version}
+${AnsiColor.BRIGHT_RED}__        __     _       ____     ____
+${AnsiColor.BRIGHT_YELLOW}\ \      / /    / \     / ___|   |  _ \
+${AnsiColor.BRIGHT_GREEN} \ \ /\ / /    / _ \    \___ \   | | | |
+${AnsiColor.GREEN}  \ V  V /    / ___ \    ___) |  | |_| |
+${AnsiColor.CYAN}   \_/\_/    /_/   \_\  |____/   |____/
