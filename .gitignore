@@ -38,3 +38,6 @@ out/
 
 #mac os
 .DS_Store
+
+### important file / key
+/src/main/resources/config/

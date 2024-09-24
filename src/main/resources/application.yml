@@ -1,0 +1,23 @@
+server:
+    port: 8088
+spring:
+    application:
+        name: wasd
+    datasource:
+        hikari:
+            maximum-pool-size: 4
+        url: ${psql.url}
+        username: ${psql.username}
+        password: ${psql.password}
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                show_sql: true
+    thymeleaf:
+        cache: false
+        check-template-location: true
+        enabled: true
+        prefix: classpath:/templates
+        suffix: .html
