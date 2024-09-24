@@ -10,7 +10,7 @@ public class UserController {
     @GetMapping("/user/login")
     public ModelAndView login(ModelAndView model) {
         model.addObject("data", "test");
-        model.setViewName("/user/login");
+        model.setViewName("/pages/user/login");
         return model;
     }
 }
