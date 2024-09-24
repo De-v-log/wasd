@@ -1,0 +1,57 @@
+.header-box{
+    display: flex;
+    /*justify-content: center;*/
+    height: 85px;
+    width: 130px;
+    padding: 0 15px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url('../../../images/bg_joystick.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.joystick-container {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.joystick {
+    width: 25px;
+    height: 25px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    /* gap: 10px; */
+     width: 42px;
+    height: 42px;
+}
+.direction-button {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#up { grid-area: 1 / 2; background-color: #FD3730 } /* 2위치 (1행 2열) */
+#left { grid-area: 2 / 1; background-color: #FAC100 } /* 4위치 (2행 1열) */
+#right { grid-area: 2 / 3; background-color: #00CF66 } /* 6위치 (2행 3열) */
+#down { grid-area: 3 / 2; background-color: #009AE0 } /* 8위치 (3행 2열) */
