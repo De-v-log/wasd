@@ -15,6 +15,14 @@ spring:
         properties:
             hibernate:
                 show_sql: true
+    data:
+        mongodb:
+            host: ${mongo.host}
+            port: 27017
+            authentication-database: admin
+            username: wasd
+            password: ${mongo.password}
+            database: wasd
     thymeleaf:
         cache: false
         check-template-location: true
