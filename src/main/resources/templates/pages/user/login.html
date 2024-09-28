@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/common/layout/defaultLayout}"
-      layout:fragment="Content"
->
-<head>
-    <title>LOGIN</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="/common/fragments/config :: ConfigFragment">
+    <title>WASD</title>
 </head>
-<body>
+<head>
+    <link th:inline="css" th:href="@{/css/user/login.css}" rel="stylesheet">
+</head>
 
-<span th:text="${data}"></span>
+<body style="margin: 0;height: 100vh;display: flex;justify-content: center;align-items: center;">
+
+    <div class="login-box">
+        <div class="login-logo-img-box">
+            <img class="login-logo-img"  th:src="@{/images/wasd_logo.png}" />
+        </div>
+        <div class="login-logo-dc">
+            <p>SNS 계정으로 로그인해주세요.</p>
+            <p>계정이 없다면 자동으로 회원가입이 진행됩니다.</p>
+        </div>
+
+        <div class="login-sns-bar">
+            <span>SNS</span>
+        </div>
+
+        <div class="login-sns-btn-box">
+            <button class="login-sns-btns">
+                <img th:src="@{/images/kakao.png}" alt="kakaoLogin" style="width: 100%;">
+            </button>
+            <button class="login-sns-btns">
+                <img th:src="@{/images/naver.png}" alt="naverLogin" style="width: 100%;">
+            </button>
+            <button class="login-sns-btns">
+                <img th:src="@{/images/google.png}" alt="googleLogin" style="width: 100%;">
+            </button>
+
+
+        </div>
+
+
+    </div>
+
 </body>
 </html>

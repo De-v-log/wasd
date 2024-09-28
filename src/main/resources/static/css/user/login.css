@@ -1,0 +1,60 @@
+.login-box {
+    width: 600px;
+    height: 470px;
+    box-shadow: 0px 4px 25px rgb(0 0 0 / 4%), 0px 2px 6px rgb(0 0 0 / 3%);
+    border-radius: 20px;
+    background-color: #3a3e45;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.login-logo-img-box{
+    text-align: center;
+}
+
+.login-logo-img{
+    width: 180px;
+    object-fit: contain;
+}
+.login-logo-dc{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-sns-bar {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.login-sns-bar::before,
+.login-sns-bar::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--server-marker-active);
+    margin: 0 10px; /* 선과 텍스트 간의 간격 */
+}
+
+.login-sns-bar span {
+    color:var(--server-marker-active);
+    white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 */
+}
+
+.login-sns-btn-box{
+    display: flex;
+    gap: 50px;
+    margin: 0 auto;
+}
+
+.login-sns-btns {
+    cursor: pointer;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+}
