@@ -1,6 +1,6 @@
 package com.wasd.gameInfo.service;
 
-import com.wasd.gameInfo.dto.GameListDto;
+import com.wasd.gameInfo.dto.GameInfoDto;
 import com.wasd.gameInfo.entity.GameInfo;
 import com.wasd.gameInfo.repository.GameInfoRepository;
 import lombok.AllArgsConstructor;
@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 public class GameInfoService {
     private final GameInfoRepository gameInfoRepository;
 
-    public List<GameListDto> findGameList(){
+    public List<GameInfoDto> findGameList(){
         return gameInfoRepository.findAllGameIdAndGameNm().stream()
-                .map(gameInfo -> new GameListDto(gameInfo.getGameId(), gameInfo.getGameNm()))
+                .map(GameInfo::toDto)
                 .collect(Collectors.toList());
     }
 

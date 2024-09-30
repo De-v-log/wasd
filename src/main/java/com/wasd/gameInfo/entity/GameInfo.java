@@ -1,4 +1,5 @@
 package com.wasd.gameInfo.entity;
+import com.wasd.gameInfo.dto.GameInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,5 +20,13 @@ public class GameInfo {
     private String gameId;
     private String gameNm;
     private Map<String, Object> info; // 모든 데이터를 유동적으로 처리하는 Map
+
+    public GameInfoDto toDto() {
+        return GameInfoDto.builder()
+                .gameId(this.gameId)
+                .gameNm(this.gameNm)
+                .info(this.info)
+                .build();
+    }
 }
 

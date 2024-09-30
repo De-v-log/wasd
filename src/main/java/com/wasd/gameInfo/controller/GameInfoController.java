@@ -1,6 +1,6 @@
 package com.wasd.gameInfo.controller;
 
-import com.wasd.gameInfo.dto.GameListDto;
+import com.wasd.gameInfo.dto.GameInfoDto;
 import com.wasd.gameInfo.entity.GameInfo;
 import com.wasd.gameInfo.service.GameInfoService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class GameInfoController {
      * @return 게임아이디(영문) 게임명(한글) 목록 반환
      */
     @GetMapping("/gameInfo")
-    public ResponseEntity<List<GameListDto>> findGameInfo(){
+    public ResponseEntity<List<GameInfoDto>> findGameInfo(){
         return ResponseEntity.ok(gameInfoService.findGameList());
 
     }
