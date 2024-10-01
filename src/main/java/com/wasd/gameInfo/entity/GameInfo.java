@@ -1,4 +1,5 @@
 package com.wasd.gameInfo.entity;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wasd.gameInfo.dto.GameInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import java.util.Map;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GameInfo {
     @Id
     private String id;
