@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface GameInfoRepository extends MongoRepository<GameInfo, String > {
 
     @Query(value = "{}", fields = "{'gameId': true, 'gameNm': true}")
-    List<GameInfo> findAllGameIdAndGameNm();
+    Optional<List<GameInfo>> findAllGameIdAndGameNm();
 
     Optional<GameInfo> findByGameId(String gameID);
 }

@@ -17,12 +17,7 @@ spring:
                 show_sql: true
     data:
         mongodb:
-            host: ${mongo.host}
-            port: 27017
-            authentication-database: admin
-            username: wasd
-            password: ${mongo.password}
-            database: wasd
+            uri: ${mongo.uri}
     thymeleaf:
         cache: false
         check-template-location: true
