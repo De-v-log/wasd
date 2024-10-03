@@ -10,7 +10,7 @@ import java.util.Map;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL) // NULL이면 no return
+@JsonInclude(JsonInclude.Include.NON_NULL) // NULL 이면 no return
 public class GameInfoDto {
     private String gameId;
     private String gameNm;

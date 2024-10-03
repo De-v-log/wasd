@@ -1,13 +1,14 @@
 package com.wasd.gameInfo.controller;
 
 import com.wasd.gameInfo.dto.GameInfoDto;
+import com.wasd.gameInfo.dto.UserGameInfoDto;
 import com.wasd.gameInfo.service.GameInfoService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/gameInfo")
@@ -34,7 +35,6 @@ public class GameInfoController {
         return ResponseEntity.ok(gameInfoService.findGameInfo(gameId));
     }
 
-
     /**
      * 유저의 게임 목록들 반환
      * @param userId 유저아이디
@@ -55,4 +55,34 @@ public class GameInfoController {
     public ResponseEntity<GameInfoDto> findUserGameInfo(@RequestParam String userId, @RequestParam String gameId){
         return ResponseEntity.ok(gameInfoService.findUserGameInfo(userId, gameId));
     }
+
+    /**
+     * 유저 게임 정보 insert
+     * @param gameInfoDtoList 게임정보 목록
+     * @param session 유저아이디 담긴 세션
+     * @return UserGameInfoDto
+     */
+    @PostMapping("/user/game")
+    public ResponseEntity<UserGameInfoDto> insertUserGameInfo(@RequestBody List<GameInfoDto> gameInfoDtoList, HttpSession session){
+        //TODO 로그인 기능 구현 전 임시세션
+        session.setAttribute("userId", "testId");
+        return ResponseEntity.ok(gameInfoService.insertUserGameInfo(gameInfoDtoList, session));
+    }
+
+    // 유저가 선택한 게임 정보 update
+
+    /**
+     * 유저 선택 게임 정보 업데이트
+     * @param gameInfoDto 수정된 게임 정보
+     * @param session 유저 아이디 담긴 세션
+     * @return UserGameInfoDto
+     */
+    @PutMapping("/user/game")
+    public ResponseEntity<UserGameInfoDto> updateUserGameInfo(@RequestBody GameInfoDto gameInfoDto, HttpSession session){
+        //TODO 로그인 기능 구현 전 임시세션
+        session.setAttribute("userId", "testId");
+        return ResponseEntity.ok(gameInfoService.updateUserGameInfo(gameInfoDto, session));
+    }
+
+    //TODO 유저가 선택한 게임 정보 delete
 }

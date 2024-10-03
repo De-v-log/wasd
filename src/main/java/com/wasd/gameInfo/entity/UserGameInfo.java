@@ -1,6 +1,7 @@
 package com.wasd.gameInfo.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.wasd.gameInfo.dto.UserGameInfoDto;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +25,11 @@ public class UserGameInfo {
 
     private List<GameInfo> gameInfoList;
 
+    public UserGameInfoDto toDto(){
+        return UserGameInfoDto.builder()
+                .userId(this.userId)
+                .gameInfoList(this.gameInfoList.stream()
+                        .map(GameInfo::toDto).toList()) // dto <-> entity
+                .build();
+    }
 }
