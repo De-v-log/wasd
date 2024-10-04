@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Getter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL) // NULL 이면 no return

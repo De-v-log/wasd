@@ -34,8 +34,8 @@ public class GameInfoService {
                 .orElseThrow(() -> new RuntimeException("해당 게임이 없습니다"));
     }
 
-    public List<GameInfoDto> findUserGameInfo(String userId) {
-        return userGameInfoRepository.findUserGameInfoListByUserId(userId)
+    public List<GameInfoDto> findUserGameInfo(HttpSession session) {
+        return userGameInfoRepository.findUserGameInfoListByUserId(getUserId(session))
                 .map(UserGameInfo::getGameInfoList)
                 .orElse(new ArrayList<>())// 유저 게임 정보가 없음
                 .stream()
@@ -43,9 +43,8 @@ public class GameInfoService {
                 .collect(Collectors.toList());
     }
 
-
-    public GameInfoDto findUserGameInfo(String userId, String gameId) {
-        return userGameInfoRepository.findByUserId(userId)
+    public GameInfoDto findUserGameInfo(String gameId, HttpSession session) {
+        return userGameInfoRepository.findByUserId(getUserId(session))
                 .map(userGameInfo -> userGameInfo.getGameInfoList().stream()
                         .filter(gameInfo -> gameId.equals(gameInfo.getGameId()))
                         .findFirst()
@@ -55,22 +54,19 @@ public class GameInfoService {
     }
 
     public UserGameInfoDto insertUserGameInfo(List<GameInfoDto> gameInfoDtoList, HttpSession session) {
-        try {
-            String userId = (String) session.getAttribute("userId");
-            if (userId == null) throw new RuntimeException("유저 아이디가 없음 (노세션)");
+        String userId = getUserId(session);
+        // 혹시 만약 있다면 삭제 먼저
+        userGameInfoRepository.findByUserId(userId).ifPresent(userGameInfoRepository::delete);
 
-            UserGameInfoDto dto = UserGameInfoDto.builder()
-                    .userId(userId)
-                    .gameInfoList(gameInfoDtoList)
-                    .build();
-            return userGameInfoRepository.save(dto.toEntity()).toDto();
-        } catch (Exception e) {
-            throw new RuntimeException("게임 정보 저장 실패", e);
-        }
+        UserGameInfoDto dto = UserGameInfoDto.builder()
+                .userId(userId)
+                .gameInfoList(gameInfoDtoList)
+                .build();
+        return userGameInfoRepository.save(dto.toEntity()).toDto();
     }
 
     public UserGameInfoDto updateUserGameInfo(GameInfoDto gameInfoDto, HttpSession session) {
-        String userId = (String) session.getAttribute("userId");
+        String userId = getUserId(session);
         UserGameInfo byUserId = userGameInfoRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
         List<GameInfo> gameInfoList = byUserId.getGameInfoList();
@@ -106,6 +102,40 @@ public class GameInfoService {
 
         // 기존 _id save 시 업데이트
         return userGameInfoRepository.save(updatedUserGameInfo).toDto();
+    }
+
+    public UserGameInfoDto deleteUserGameInfo(String gameId, HttpSession session){
+        String userId = getUserId(session);
+
+        UserGameInfo beforeDelete = userGameInfoRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
+
+        // 삭제를 위해선 복사본 생성해야됨
+        List<GameInfo> gameInfoList = new ArrayList<>(beforeDelete.getGameInfoList());
+        // 게임아이디에 해당하는 gameInfo 목록에서 지우기
+        if (!gameInfoList.removeIf(gameInfo -> gameInfo.getGameId().equals(gameId))) {
+            // 만약 지워진게 없으면 그냥 현재 정보 바로 반환
+            return beforeDelete.toDto();
+        }
+
+        // update by deleted
+        UserGameInfo deleted = UserGameInfo.builder()
+                .id(beforeDelete.getId())
+                .userId(beforeDelete.getUserId())
+                .gameInfoList(gameInfoList)
+                .build();
+
+        // 저장 후 삭제된 게임 정보 확인
+        UserGameInfo save = userGameInfoRepository.save(deleted);
+        return save.toDto();
+    }
+
+    private String getUserId(HttpSession session){
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            throw new RuntimeException("유저 정보가 없습니다");
+        }
+        return userId;
     }
 
 }

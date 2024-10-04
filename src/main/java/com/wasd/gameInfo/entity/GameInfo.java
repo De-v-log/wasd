@@ -1,17 +1,16 @@
 package com.wasd.gameInfo.entity;
-import com.fasterxml.jackson.annotation.JsonInclude;
+
 import com.wasd.gameInfo.dto.GameInfoDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Map;
 
 @Document(collection = "gameInfo")
 @Getter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameInfo {
