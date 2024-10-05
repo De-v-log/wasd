@@ -193,16 +193,6 @@ svg[id]
     outline: none;
 }
 
-.input-wrapper-ph span {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0%;
-    width: 0;
-    height: 2px;
-    border-radius: 2px;
-    transition: 0.5s;
-}
 
 .input-wrapper-ph label {
     z-index: 5;
@@ -211,8 +201,8 @@ svg[id]
     left: 20px;
     bottom: 8px;
     transition: all .2s;
+    opacity: 0.5;
 }
-
 .input-wrapper-ph input:focus ~ label,
 .input-wrapper-ph input:valid ~ label,
 .input-wrapper-ph select:focus ~ label,
@@ -220,13 +210,7 @@ svg[id]
     bottom: 45px;
     color: lightgray;
     font-weight: bold;
-}
-
-.input-wrapper-ph input:focus ~ span,
-.input-wrapper-ph input:valid ~ span,
-.input-wrapper-ph select:focus ~ span,
-.input-wrapper-ph select:valid ~ span {
-    width: 100%;
+    opacity: 1;
 }
 
 /* 기본 */

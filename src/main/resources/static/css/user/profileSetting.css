@@ -146,8 +146,12 @@
 .profile-info-gameAttr-box{
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
-
+.profile-info-gameAttr-box-title {
+    font-size: 18px;
+    font-weight: 700;
+}
 .profile-info-gameAttr-box-col{
     display: flex; gap: 10px;
 }
