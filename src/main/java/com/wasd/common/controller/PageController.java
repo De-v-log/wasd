@@ -9,10 +9,10 @@ public class PageController {
     @GetMapping("/")
     public String sessionControl(HttpSession session){
         if (session.getAttribute("user") == null){
-            return "redirect:/user/login";
+            return "redirect:/login";
         }else{
             // board 로 리다이렉트 예정
-            return "redirect:/user/login";
+            return "redirect:/login";
         }
     }
 
@@ -21,7 +21,7 @@ public class PageController {
      *
      * @return
      */
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public String loginPage(){
         return "/pages/user/login";
     }
