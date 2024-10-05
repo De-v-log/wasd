@@ -1,0 +1,206 @@
+/* 프로필 전제 박스*/
+.profile-box {
+    padding: 100px 0 ;
+    display: flex;
+    height: 100%;
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* 좌측 step 박스*/
+.profile-step-box {
+    gap: 30px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+    align-items: center;
+}
+
+/* step 버튼 */
+.profile-step-box .profile-step-btn {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: lightgray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border:none;
+}
+/* step 버튼 활성화 */
+.profile-step-box .profile-step-btn.active {
+    background-color : var(--server-bg-active);
+}
+
+/* 프로필 박스 */
+.profile-info-box {
+    padding: 50px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* 프로필 타이틀 */
+.profile-info-title{
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 프로필 입력 박스*/
+.profile-info-input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/*프로필 다음 스텝 버튼 */
+.profile-info-btn-box{
+    border-top: 1px solid var(--input-bg);
+    padding: 50px 0;
+    gap: 10px;
+    display: flex;
+}
+
+/* 게임 정보 박스 */
+.profile-info-game-box{
+    background-color: var(--input-bg);
+    border-radius: 20px;
+    display: flex;
+    /*grid-template-columns: repeat(4, 1fr);*/
+    gap: 20px;
+    max-width: 600px;
+    padding: 10px 15px 70px 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.profile-info-game-box::-webkit-scrollbar {
+    height: 8px;
+    border-radius: 20px;
+}
+.profile-info-game-box::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.profile-info-game-box::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 20px;
+}
+.profile-info-game-box::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* 게임 버튼 */
+.profile-info-game-btn {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    min-height: 50px;
+    min-width: 50px;
+}
+.profile-info-game-btn.select {
+    outline: 3px solid var(--server-bg-active);
+}
+/* 게임 버튼 이미지 */
+.profile-info-game-btn img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.profile-info-game-delete-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 10; /* 이미지 위에 보이게 함 */
+}
+.game-add-btn{
+    background-color: var(--server-bg-active);
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+/* 게임 속성 정보 */
+.profile-info-gameAttr-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info-gameAttr-box-col{
+    display: flex; gap: 10px;
+}
+
+
+.gameInfo-popup {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.gameInfo-content {
+    background-color: var(--back-bg);
+    margin: 12.5% auto;
+    padding: 30px 30px 20px 30px;
+    border-radius: 20px;
+    width: 50%;
+    max-width: 700px;
+    height: 50%;
+    max-height: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.gameInfo-close {
+    color: lightgray;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gameInfo-popup-gamebox{
+    border: var(--input-bg) 2px solid;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 680px;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    margin: 10px 0 20px 0;
+}
+
+.gameInfo-popup-gamebox .profile-info-game-btn{
+    min-width: 100px;
+    min-height: 100px;
+}
