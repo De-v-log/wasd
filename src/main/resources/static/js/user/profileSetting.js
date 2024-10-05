@@ -141,14 +141,19 @@ function addPopupGameInfo(){
 // 게임 제거
 function deleteGameInfo(gameId){
 
-    // 저장 데이터 삭제
-    var delGameIndex = userGameInfo.findIndex(game => game.gameId === gameId);  // 저장 데이터 없으면 -1
+    var delGameIndex = userGameInfo.findIndex(game => game.gameId === gameId);  // // 저장 데이터 삭제
     if(delGameIndex >= 0 ){
         userGameInfo.splice(delGameIndex, 1);
     }
-    $('.profile-info-gameAttr-box').empty();    // 게임 속성 초기화
+
+    var delGameId = $('.profile-info-game-box .profile-info-game-btn.select').attr('id');
     $('#profile-info-game-box').find(`#${gameId}`).remove();    // 선호 게임 버튼 삭제
     openGameInfoPopupCheck();   // 게임 추가 버튼
+
+    if(gameId === delGameId){
+        $('.profile-info-gameAttr-box').empty();    // 게임 속성 초기화
+        $('.profile-info-game-box .profile-info-game-btn').first().trigger('click');    // 첫번째 게임에 select 옵션 추가
+    }
 
     // 게임 모두 삭제했을 경우 추가 팝업 띄우기
     if($('.profile-info-game-box .profile-info-game-btn').length === 0){
