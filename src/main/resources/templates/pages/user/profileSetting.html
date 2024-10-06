@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Common Head -->
+    <meta charset="UTF-8">
+    <title>WASD</title>
+
+    <!--Common JS-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/common/header.js}"></script>
+
+    <!--Common CSS -->
+    <link th:inline="css" th:href="@{/css/common/common.css}" rel="stylesheet"/>
+    <link th:inline="css" th:href="@{/css/common/fragments/header.css}" rel="stylesheet"/>
+    <link th:inline="css" th:href="@{/css/fontawesome/all.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- profileSetting-->
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/user/profileSetting.js}"></script>
+    <link th:inline="css" th:href="@{/css/user/profileSetting.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div class="profile-box">
+    <div class="profile-step-box" >
+        <button class="profile-step-btn active" id="profile-step-btn-1" onclick="changeStep(1)">1</button>
+        <button class="profile-step-btn" id="profile-step-btn-2" onclick="changeStep(2)">2</button>
+    </div>
+
+    <!-- # step1 -->
+    <div class="profile-info-box" id="profile-info-box-step1">
+        <div class="profile-info-title">
+            <p>Step 1</p>
+            <h1>프로필 정보</h1>
+        </div>
+
+        <div class="profile-info-input-box">
+
+            <div style="display: flex; gap: 20px; " >
+                <div class="profile-info-input-box" style="width: 50%;">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" id="email" th:name="email" placeholder="이메일" value="todlscjs3@naver.com" disabled />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="nickname" name="nickname" placeholder="닉네임"/>
+                    </div>
+
+                    <div class="input-wrapper" >
+                        <i class="fa-solid fa-user"></i>
+                        <select id="mbti" name="mbti" >
+                            <option value="" selected>성격유형</option>
+                            <option value="ISFP">ISFP</option>
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" >
+                        <i class="fa-solid fa-calendar-day"></i>
+                        <input type="text" id="year_of_birth" name="year_of_birth" placeholder="생년월일"  readonly />
+                    </div>
+
+
+
+
+                </div>
+                <div style="width: 50%;">
+<!--                    <input type="file" id="user_profile_img" name="user_profile_img">-->
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div class="input-wrapper" style="width: 50%;">
+                    <i class="fa-solid fa-hourglass-start"></i>
+                    <select id="start_time" name="start_time" >
+                        <option value="" selected>게임 시작 시간</option>
+                        <option th:each="hour : ${#numbers.sequence(0, 23)}"
+                                th:value="${hour}"
+                                th:text="${hour} + '시'"></option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper" style="width: 50%;">
+                    <i class="fa-solid fa-hourglass-end"></i>
+                    <select id="end_time" name="end_time" >
+                        <option value="" selected>게임 종료 시간</option>
+                        <option th:each="hour : ${#numbers.sequence(0, 23)}"
+                                th:value="${hour}"
+                                th:text="${hour} + '시'"></option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="profile-info-btn-box">
+            <button class="bt" onclick="changeStep(2)">Next</button>
+        </div>
+
+    </div>
+
+
+    <!-- # step2 -->
+    <div class="profile-info-box" id="profile-info-box-step2" style="display: none">
+        <div class="profile-info-title">
+            <p id="profile-step-title">Step 2</p>
+            <h1 id="profile-title">게임 정보</h1>
+            <p style="display: flex; gap:10px; align-items: center; line-height: 25px">
+                <span>선호하는 게임을 선택하세요.</span>
+                <button class="game-add-btn" id="game-add-btn" onclick="openGameInfoPopup()" ><i class="fa-solid fa-plus"></i></button>
+            </p>
+        </div>
+
+        <div class="profile-info-game-box" id="profile-info-game-box">
+
+        </div>
+
+        <!-- 게임 정보 -->
+        <div class="profile-info-gameAttr-box">
+
+            <!--            <div class="input-wrapper-ph">-->
+            <!--                <input type="text" required>-->
+            <!--                <label>Name</label>-->
+            <!--            </div>-->
+
+        </div>
+
+        <div class="profile-info-btn-box">
+            <button class="bt bt-lightgray" onclick="changeStep(1)">Previous</button>
+            <button class="bt " >Save</button>
+        </div>
+    </div>
+
+    <!-- 게임 추가 팝업 -->
+    <div id="gameInfo-popup" class="gameInfo-popup" >
+        <div class="gameInfo-content">
+            <div>
+                <span class="gameInfo-close" id="gameInfo-close" onclick="closeGameInfoPopup()">&times;</span>
+                <h3>선호하는 게임을 선택하세요.</h3>
+            </div>
+
+            <div class="gameInfo-popup-gamebox" id="gameInfo-popup-gamebox">
+
+            </div>
+            <div>
+                <button class="bt" style="float:right" onclick="addPopupGameInfo()">
+                    추가
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

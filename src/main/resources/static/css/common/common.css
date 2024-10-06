@@ -15,6 +15,8 @@
     --button-bg: #2E3136;
     --button-bg-active: #383C3F;
     --servers-bg-lightened: #24282B;
+    --input-bg: #3B4859;
+    --back-bg:#2B3440;
 }
 * {  box-sizing: border-box;
     margin: 0;
@@ -29,8 +31,8 @@
 html, body
 {
     height: 100%;
-    /*background: var(--body-bg);*/
-    background: var(--chat-bg);
+    background: var(--back-bg);
+    /*background: var(--chat-bg);*/
     color: var(--body-color);
     font-size: 16px;
     font-family: "Roboto";
@@ -131,4 +133,132 @@ svg[id]
 100% {
     border-radius: 25px;
 }
+}
+
+/*input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea {*/
+/*    background-color: var(--input-bg);*/
+/*    border: none;*/
+/*    height: 40px;*/
+/*    width: 450px;*/
+/*    color: lightgrey;*/
+/*    border-radius: 20px;*/
+/*    padding: 10px 20px;*/
+/*    box-sizing: border-box;*/
+/*    vertical-align: middle;*/
+/*    outline: none;*/
+/*}*/
+
+/* input 스타일 - 심볼 + input */
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: lightgrey;
+    pointer-events: none;
+    opacity: 0.5;
+}
+.input-wrapper input[type="text"], .input-wrapper select{
+    padding: 10px 20px 10px 50px; /* 왼쪽에 아이콘 공간 확보 */
+}
+
+
+/* input 스타일 - 라벨 위로 올라감*/
+
+.input-wrapper-ph {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper-ph input,
+.input-wrapper-ph select {
+    color: lightgrey;
+    border: none;
+    padding: 10px 20px;
+    position: relative;
+    background-color: var(--input-bg);
+    z-index: 5;
+}
+
+.input-wrapper-ph input::placeholder {
+    color: lightgray;
+}
+
+.input-wrapper-ph input:focus,
+.input-wrapper-ph select:focus {
+    outline: none;
+}
+
+
+.input-wrapper-ph label {
+    z-index: 5;
+    position: absolute;
+    color: lightgray;
+    left: 20px;
+    bottom: 8px;
+    transition: all .2s;
+    opacity: 0.5;
+}
+.input-wrapper-ph input:focus ~ label,
+.input-wrapper-ph input:valid ~ label,
+.input-wrapper-ph select:focus ~ label,
+.input-wrapper-ph select:valid ~ label {
+    bottom: 45px;
+    color: lightgray;
+    font-weight: bold;
+    opacity: 1;
+}
+
+/* 기본 */
+input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea, select  {
+    background-color: var(--input-bg);
+    border: none;
+    height: 40px;
+    width: 100%;
+    color: lightgrey;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    outline: none;
+}
+input[type="text"]::placeholder, select::placeholder {
+    color: lightgrey;
+    opacity: 0.5;
+}
+
+
+select {
+    width: 100%;
+    appearance: none; /* 기본 화살표 제거 */
+}
+
+.bt{
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    color: white;
+    background-color: var(--server-bg-active);
+    cursor: pointer;
+    border: none;
+}
+
+.bt.bt-gray{
+    background-color: var(--server-marker-unread);
+}
+
+.bt.bt-lightgray{
+    background-color: lightgray;
+}
+
+/* 공통 스타일 */
+.flex{
+    display: flex;
+}
+.flex-direction-col{
+    flex-direction: column;
 }
