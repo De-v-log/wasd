@@ -26,9 +26,9 @@ public class PageController {
         return "/pages/user/login";
     }
 
-    @GetMapping("/user/profileSetting")
-    public String profileSetting(){
-        return "/pages/user/profileSetting";
+    @GetMapping("/join")
+    public String joinPage(){
+        return "/pages/user/join";
 
     }
 }
