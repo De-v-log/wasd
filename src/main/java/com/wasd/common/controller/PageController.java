@@ -26,7 +26,7 @@ public class PageController {
         return "/pages/user/login";
     }
 
-    @GetMapping("/user/join")
+    @GetMapping("/join")
     public String joinPage(){
         return "/pages/user/join";
 
