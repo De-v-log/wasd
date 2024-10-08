@@ -23,13 +23,13 @@
     </div>
 
     <div class="login-sns-btn-box">
-        <button class="login-sns-btns" onClick="window.location.href='/join'">
+        <button class="login-sns-btns" onClick="window.location.href='/oauth2/authorization/kakao'">
             <img th:src="@{/images/kakao.png}" alt="kakaoLogin" style="width: 100%;">
         </button>
-        <button class="login-sns-btns">
+        <button class="login-sns-btns" onClick="window.location.href='/oauth2/authorization/naver'">
             <img th:src="@{/images/naver.png}" alt="naverLogin" style="width: 100%;">
         </button>
-        <button class="login-sns-btns">
+        <button class="login-sns-btns" onClick="window.location.href='/oauth2/authorization/google'">
             <img th:src="@{/images/google.png}" alt="googleLogin" style="width: 100%;">
         </button>
     </div>
