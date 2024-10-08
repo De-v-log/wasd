@@ -6,7 +6,6 @@ import com.wasd.gameInfo.entity.GameInfo;
 import com.wasd.gameInfo.entity.UserGameInfo;
 import com.wasd.gameInfo.repository.GameInfoRepository;
 import com.wasd.gameInfo.repository.UserGameInfoRepository;
-import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +33,8 @@ public class GameInfoService {
                 .orElseThrow(() -> new RuntimeException("해당 게임이 없습니다"));
     }
 
-    public List<GameInfoDto> findUserGameInfo(HttpSession session) {
-        return userGameInfoRepository.findUserGameInfoListByUserId(getUserId(session))
+    public List<GameInfoDto> findUserGameInfo(String userId) {
+        return userGameInfoRepository.findUserGameInfoListByUserId(userId)
                 .map(UserGameInfo::getGameInfoList)
                 .orElse(new ArrayList<>())// 유저 게임 정보가 없음
                 .stream()
@@ -43,8 +42,8 @@ public class GameInfoService {
                 .collect(Collectors.toList());
     }
 
-    public GameInfoDto findUserGameInfo(String gameId, HttpSession session) {
-        return userGameInfoRepository.findByUserId(getUserId(session))
+    public GameInfoDto findUserGameInfo(String gameId, String userId) {
+        return userGameInfoRepository.findByUserId(userId)
                 .map(userGameInfo -> userGameInfo.getGameInfoList().stream()
                         .filter(gameInfo -> gameId.equals(gameInfo.getGameId()))
                         .findFirst()
@@ -53,20 +52,20 @@ public class GameInfoService {
                 .orElseThrow(() -> new RuntimeException("유저에 해당하는 정보가 없습니다."));
     }
 
-    public UserGameInfoDto insertUserGameInfo(List<GameInfoDto> gameInfoDtoList, HttpSession session) {
-        String userId = getUserId(session);
+    public UserGameInfoDto insertUserGameInfo(List<GameInfoDto> gameInfoDtoList, String userId) {
         // 혹시 만약 있다면 삭제 먼저
         userGameInfoRepository.findByUserId(userId).ifPresent(userGameInfoRepository::delete);
-
-        UserGameInfoDto dto = UserGameInfoDto.builder()
+        UserGameInfo save = UserGameInfo.builder()
                 .userId(userId)
-                .gameInfoList(gameInfoDtoList)
+                .gameInfoList(gameInfoDtoList.stream()
+                        .map(GameInfoDto::toEntity) // 각 DTO를 엔티티로 변환
+                        .collect(Collectors.toList())
+                )
                 .build();
-        return userGameInfoRepository.save(dto.toEntity()).toDto();
+        return userGameInfoRepository.save(save).toDto();
     }
 
-    public UserGameInfoDto updateUserGameInfo(GameInfoDto gameInfoDto, HttpSession session) {
-        String userId = getUserId(session);
+    public UserGameInfoDto updateUserGameInfo(GameInfoDto gameInfoDto, String userId) {
         UserGameInfo byUserId = userGameInfoRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
         List<GameInfo> gameInfoList = byUserId.getGameInfoList();
@@ -104,9 +103,7 @@ public class GameInfoService {
         return userGameInfoRepository.save(updatedUserGameInfo).toDto();
     }
 
-    public UserGameInfoDto deleteUserGameInfo(String gameId, HttpSession session){
-        String userId = getUserId(session);
-
+    public UserGameInfoDto deleteUserGameInfo(String gameId, String userId){
         UserGameInfo beforeDelete = userGameInfoRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
 
@@ -128,14 +125,6 @@ public class GameInfoService {
         // 저장 후 삭제된 게임 정보 확인
         UserGameInfo save = userGameInfoRepository.save(deleted);
         return save.toDto();
-    }
-
-    private String getUserId(HttpSession session){
-        String userId = (String) session.getAttribute("userId");
-        if (userId == null) {
-            throw new RuntimeException("유저 정보가 없습니다");
-        }
-        return userId;
     }
 
 }
