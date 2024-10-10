@@ -1,6 +1,5 @@
 package com.wasd.config.security;
 
-import com.wasd.user.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -62,8 +61,8 @@ public class OAuth2UserInfo {
                 .build();
     }
 
-    public User toEntity(){
-        return User.builder()
+    public UserInfo toEntity(){
+        return UserInfo.builder()
                 .userId(id)
                 .nickname(nickname)
                 .provider(provider)

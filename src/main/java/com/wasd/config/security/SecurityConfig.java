@@ -24,6 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable) // CSRF 비활성화 (필요에 따라 설정)
                 .authorizeHttpRequests(auth -> auth
+
                         // 로그인페이지 말고는 인증 안되게 ( + 정적파일 접근권한도 추가해줘야함)
                         .requestMatchers("/login", "/css/**", "/images/**", "/js/**", "/error").permitAll()
 
