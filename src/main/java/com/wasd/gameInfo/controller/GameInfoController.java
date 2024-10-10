@@ -24,7 +24,6 @@ public class GameInfoController {
     @GetMapping
     public ResponseEntity<List<GameInfoDto>> findGameInfo(){
         return ResponseEntity.ok(gameInfoService.findGameInfo());
-
     }
 
     /**
@@ -68,8 +67,6 @@ public class GameInfoController {
         // 이 메소드는 가입시에만 호출되므로 drop 후 insert 로 구현함
         return ResponseEntity.ok(gameInfoService.insertUserGameInfo(gameInfoDtoList, oAuth2User.getUserInfo().getId()));
     }
-
-    // 유저가 선택한 게임 정보 update
 
     /**
      * 유저 선택 게임 정보 업데이트
