@@ -8,16 +8,16 @@
     <!--Common JS-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script th:inline="javascript" type="text/javascript" th:src="@{/js/common/header.js}"></script>
 
     <!--Common CSS -->
     <link th:inline="css" th:href="@{/css/common/common.css}" rel="stylesheet"/>
-    <link th:inline="css" th:href="@{/css/common/fragments/header.css}" rel="stylesheet"/>
     <link th:inline="css" th:href="@{/css/fontawesome/all.min.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- join-->
-    <script th:inline="javascript" type="text/javascript" th:src="@{/js/user/join.js}"></script>
+    <script th:inline="javascript">let oauthUserInfo = /*[[${oauth}]]*/ {};</script>
+    <script th:inline="javascript" th:src="@{/js/user/join.js}"></script>
+    <script th:inline="javascript" th:src="@{/js/common/common.js}"></script>
     <link th:inline="css" th:href="@{/css/user/join.css}" rel="stylesheet"/>
 
 </head>
@@ -43,7 +43,7 @@
                 <div class="profile-info-input-box" style="width: 50%;">
                     <div class="input-wrapper">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="text" id="email" th:name="email" placeholder="이메일" value="todlscjs3@naver.com" disabled />
+                        <input type="text" id="email" th:name="email" placeholder="이메일" disabled />
                     </div>
 
                     <div class="input-wrapper">
@@ -52,30 +52,37 @@
                     </div>
 
                     <div class="input-wrapper" >
-                        <i class="fa-solid fa-user"></i>
-                        <select id="mbti" name="mbti" >
-                            <option value="" selected>성격유형</option>
-                            <option value="ISFP">ISFP</option>
+                        <i class="fa-solid fa-calendar-day"></i>
+                        <select id="yearOfBirth" name="yearOfBirth" >
+                            <option value="" selected>생년월일 선택</option>
+                            <option th:each="year : ${#numbers.sequence(2024, 1900, -1)}"
+                                    th:value="${year}"
+                                    th:text="${year}"></option>
                         </select>
+
+<!--                        <input type="text" id="yearOfBirth" name="yearOfBirth" placeholder="생년월일"  readonly />-->
                     </div>
 
                     <div class="input-wrapper" >
-                        <i class="fa-solid fa-calendar-day"></i>
-                        <input type="text" id="year_of_birth" name="year_of_birth" placeholder="생년월일"  readonly />
+                        <i class="fa-solid fa-user"></i>
+                        <select id="mbti" name="mbti" >
+                            <option value="" selected>성격유형</option>
+                        </select>
                     </div>
 
-
-
-
                 </div>
-                <div style="width: 50%;">
-<!--                    <input type="file" id="user_profile_img" name="user_profile_img">-->
+                <div class="profile-info-img-box">
+                    <img id="profileImg" src="" />
+                    <div style="display: flex;">
+                        <button id="profileImgUploadBtn" class="bt" style="margin: 0 auto;" >파일 업로드</button>
+                        <input type="file" id="profileImgFile" name="profileImgFile" style="display: none;" accept="image/*" >
+                    </div>
                 </div>
             </div>
             <div style="display: flex; gap: 10px;">
                 <div class="input-wrapper" style="width: 50%;">
                     <i class="fa-solid fa-hourglass-start"></i>
-                    <select id="start_time" name="start_time" >
+                    <select id="startTime" name="startTime" >
                         <option value="" selected>게임 시작 시간</option>
                         <option th:each="hour : ${#numbers.sequence(0, 23)}"
                                 th:value="${hour}"
@@ -85,7 +92,7 @@
 
                 <div class="input-wrapper" style="width: 50%;">
                     <i class="fa-solid fa-hourglass-end"></i>
-                    <select id="end_time" name="end_time" >
+                    <select id="endTime" name="endTime" >
                         <option value="" selected>게임 종료 시간</option>
                         <option th:each="hour : ${#numbers.sequence(0, 23)}"
                                 th:value="${hour}"
@@ -129,7 +136,7 @@
 
         <div class="profile-info-btn-box">
             <button class="bt bt-lightgray" onclick="changeStep(1)">Previous</button>
-            <button class="bt " >Save</button>
+            <button class="bt " onclick="userInfoSave()">Save</button>
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 /* 프로필 전제 박스*/
 .profile-box {
-    padding: 100px 0 ;
+    padding: 100px 0;
     display: flex;
     height: 100%;
     width: 800px;
@@ -27,11 +27,12 @@
     border: none;
     cursor: pointer;
     outline: none;
-    border:none;
+    border: none;
 }
+
 /* step 버튼 활성화 */
 .profile-step-box .profile-step-btn.active {
-    background-color : var(--server-bg-active);
+    background-color: var(--server-bg-active);
 }
 
 /* 프로필 박스 */
@@ -44,21 +45,21 @@
 }
 
 /* 프로필 타이틀 */
-.profile-info-title{
+.profile-info-title {
     gap: 20px;
     display: flex;
     flex-direction: column;
 }
 
 /* 프로필 입력 박스*/
-.profile-info-input-box{
+.profile-info-input-box {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 /*프로필 다음 스텝 버튼 */
-.profile-info-btn-box{
+.profile-info-btn-box {
     border-top: 1px solid var(--input-bg);
     padding: 50px 0;
     gap: 10px;
@@ -66,7 +67,7 @@
 }
 
 /* 게임 정보 박스 */
-.profile-info-game-box{
+.profile-info-game-box {
     background-color: var(--input-bg);
     border-radius: 20px;
     display: flex;
@@ -84,13 +85,16 @@
     height: 8px;
     border-radius: 20px;
 }
+
 .profile-info-game-box::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
 .profile-info-game-box::-webkit-scrollbar-thumb {
     background-color: lightgray;
     border-radius: 20px;
 }
+
 .profile-info-game-box::-webkit-scrollbar-button {
     display: none;
 }
@@ -105,9 +109,11 @@
     min-height: 50px;
     min-width: 50px;
 }
+
 .profile-info-game-btn.select {
     outline: 3px solid var(--server-bg-active);
 }
+
 /* 게임 버튼 이미지 */
 .profile-info-game-btn img {
     width: 100%;
@@ -132,7 +138,8 @@
     cursor: pointer;
     z-index: 10; /* 이미지 위에 보이게 함 */
 }
-.game-add-btn{
+
+.game-add-btn {
     background-color: var(--server-bg-active);
     border: none;
     outline: none;
@@ -143,18 +150,22 @@
     text-align: center;
     cursor: pointer;
 }
+
 /* 게임 속성 정보 */
-.profile-info-gameAttr-box{
+.profile-info-gameAttr-box {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
+
 .profile-info-gameAttr-box-title {
     font-size: 18px;
     font-weight: 700;
 }
-.profile-info-gameAttr-box-col{
-    display: flex; gap: 10px;
+
+.profile-info-gameAttr-box-col {
+    display: flex;
+    gap: 10px;
 }
 
 
@@ -191,7 +202,7 @@
     cursor: pointer;
 }
 
-.gameInfo-popup-gamebox{
+.gameInfo-popup-gamebox {
     border: var(--input-bg) 2px solid;
     border-radius: 20px;
     display: grid;
@@ -205,7 +216,24 @@
     margin: 10px 0 20px 0;
 }
 
-.gameInfo-popup-gamebox .profile-info-game-btn{
+.gameInfo-popup-gamebox .profile-info-game-btn {
     min-width: 100px;
     min-height: 100px;
+}
+
+/* 프로필 이미지 */
+.profile-info-img-box {
+    width: 50%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.profile-info-img-box #profileImg {
+    border: var(--input-bg) 2px solid;
+    border-radius: 10px;
+    height: 180px;
+    object-fit: contain;
+    margin: 0 auto;
+    max-width: 100%;
 }

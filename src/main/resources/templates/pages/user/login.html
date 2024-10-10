@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="/common/fragments/config :: ConfigFragment">
-    <title>WASD</title>
-</head>
+<!--<head th:replace="/common/fragments/config :: ConfigFragment">-->
+<!--    <title>WASD</title>-->
+<!--</head>-->
 <head>
+    <!-- Common Head -->
+    <meta charset="UTF-8">
+    <title>WASD</title>
+
+    <!--Common JS-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--Common CSS -->
+    <link th:inline="css" th:href="@{/css/common/common.css}" rel="stylesheet"/>
+    <link th:inline="css" th:href="@{/css/fontawesome/all.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link th:inline="css" th:href="@{/css/user/login.css}" rel="stylesheet">
 </head>
 
