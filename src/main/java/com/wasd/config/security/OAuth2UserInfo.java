@@ -1,6 +1,7 @@
 package com.wasd.config.security;
 
 import com.wasd.user.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -10,6 +11,7 @@ import java.util.Map;
 @Builder
 @Getter
 @ToString
+@AllArgsConstructor
 public class OAuth2UserInfo {
     private String id;
     private String email;
@@ -18,16 +20,12 @@ public class OAuth2UserInfo {
     private String profileImg;
 
     public static OAuth2UserInfo of(String provider, Map<String, Object> attributes) {
-        switch (provider) {
-            case "google":
-                return ofGoogle(attributes);
-            case "kakao":
-                return ofKakao(attributes);
-            case "naver":
-                return ofNaver(attributes);
-            default:
-                throw new RuntimeException("제공되지 않는 로그인 유형입니다.");
-        }
+        return switch (provider) {
+            case "google" -> ofGoogle(attributes);
+            case "kakao" -> ofKakao(attributes);
+            case "naver" -> ofNaver(attributes);
+            default -> throw new RuntimeException("제공되지 않는 로그인 유형입니다.");
+        };
     }
 
     private static OAuth2UserInfo ofGoogle(Map<String, Object> attributes) {

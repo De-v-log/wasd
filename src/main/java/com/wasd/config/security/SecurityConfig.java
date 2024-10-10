@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -27,8 +28,8 @@ public class SecurityConfig {
 
                         // 로그인페이지 말고는 인증 안되게 ( + 정적파일 접근권한도 추가해줘야함)
                         .requestMatchers("/login", "/css/**", "/images/**", "/js/**", "/error").permitAll()
+                        .requestMatchers("/auth/temp").permitAll()
 
-                        .requestMatchers("/gameInfo/**").permitAll()
                         /*// 특정 HTTP 메서드에 대한 제한 설정
                         .requestMatchers(HttpMethod.GET, "/public/**").permitAll() // GET 요청은 인증 없이 허용
                         .requestMatchers(HttpMethod.POST, "/private/**").authenticated() // POST 요청은 인증 필요
@@ -59,8 +60,8 @@ public class SecurityConfig {
             CustomOAuth2User userInfo = (CustomOAuth2User) authentication.getPrincipal();
             Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();
 
-            log.info("OAuth2 Success::" + userInfo.getUserInfo().toString() +
-                    ", Roles::" + authorities.stream()
+            log.info("OAuth2 Success::" + userInfo
+                    +", Roles::" + authorities.stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.joining(", ")));
 
@@ -70,5 +71,12 @@ public class SecurityConfig {
 
             response.sendRedirect(isSigned ? "/board" : "/join");
         };
+    }
+
+    // Security에서 사용자의 인증 정보를 HttpSession에 저장하고 관리하여 여러 요청 간에 인증 상태를 유지하게 함
+    // This is for OAuthTempController
+    @Bean
+    public HttpSessionSecurityContextRepository securityContextRepository() {
+        return new HttpSessionSecurityContextRepository();
     }
 }
