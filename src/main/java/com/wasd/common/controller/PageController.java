@@ -18,4 +18,9 @@ public class PageController {
         model.addAttribute("oauth", oAuth2User.getUserInfo());
         return "/pages/user/join";
     }
+
+    @GetMapping("/test")
+    public String testPage(){
+        return "/pages/test";
+    }
 }
