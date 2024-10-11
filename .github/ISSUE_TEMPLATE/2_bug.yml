@@ -1,0 +1,28 @@
+name: Bug Report
+description: 버그 및 수정사항 요청사항
+labels: [🚨bug]
+title: '[BUG] '
+body:
+  - type: textarea
+    id: description
+    attributes:
+      description: 버그에 대해서 설명해주세요.
+      label: Bug description
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: To Reproduce
+      description: 재현 방법을 자세히 알려주세요. 특정 환경에서만 발생하는 것 같다면, OS와 환경에 대한 정보도 함께 제공해주세요.
+      placeholder: |
+        최소한으로 재현 가능한 코드 또는 재현 단계를 설명해주세요. 선택 사항이지만 권장됩니다.
+
+  - type: textarea
+    id: pic
+    attributes:
+      label: picture
+      description: 관련된 사진이 있다면 캡쳐 후 등록해주세요.
+    validations:
+      required: false
