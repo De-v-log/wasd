@@ -1,0 +1,10 @@
+name: ETC
+description: 기타 요청사항
+body:
+  - type: textarea
+    id: description
+    attributes:
+      description: 하고싶은 말을 적어주세요
+      label: What do you want?
+    validations:
+      required: false
