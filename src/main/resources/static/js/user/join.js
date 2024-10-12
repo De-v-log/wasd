@@ -9,7 +9,7 @@ $(function () {
         ,dataType: 'json'
         ,success: function (res) {
             if(res.userId){
-                window.location.href = '/board';
+                window.location.href = '/main';
             }
         },error: function (xhr) {
             const errorMessage = xhr.responseJSON?.message || '서버 오류가 발생했습니다. 다시 시도해 주세요.';
@@ -382,7 +382,7 @@ function userInfoSave(){
         dataType: 'json',
         async: false,
         success: function (res) {
-            window.location.href = '/board';
+            window.location.href = '/main';
         },
         error: function (xhr) {
             const errorMessage = xhr.responseJSON?.message || '서버 오류가 발생했습니다. 다시 시도해 주세요.';

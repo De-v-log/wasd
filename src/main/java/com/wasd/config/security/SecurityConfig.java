@@ -69,7 +69,7 @@ public class SecurityConfig {
             boolean isSigned = authorities.stream()
                     .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_USER"));
 
-            response.sendRedirect(isSigned ? "/board" : "/join");
+            response.sendRedirect(isSigned ? "/main" : "/join");
         };
     }
 
