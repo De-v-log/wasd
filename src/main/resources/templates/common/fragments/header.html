@@ -1,12 +1,7 @@
 <aside class="groups" th:fragment="HeaderFragment">
-<!--    <div class="groups-collection">-->
-<!--        <div class="group group-logo" role="button" aria-label="group-logo">-->
-<!--            <img class="group-logo-img" style="object-fit: contain;" th:src="@{/images/wasd_logo.png}" />-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="groups-collection">
-        <div class="group profile-setting active" role="button" attr-url="/main/profileSetting" >
+        <div class="group profile-setting active" id="main-profile" role="button" attr-url="/main/profile" >
             <div class="group-icon"><i class="fa-solid fa-gear"></i></div>
         </div>
     </div>
@@ -26,13 +21,12 @@
         </div>
 
         <div class="groups-collection">
-            <div class="group unread active" role="button" attr-url="/main/group/2">
+            <div class="group unread" role="button" attr-url="/main/group/2">
                 <div class="group-icon"><img src="https://e7.pngegg.com/pngimages/636/251/png-clipart-gromit-close-up-at-the-movies-wallace-and-gromit-thumbnail.png" /></div>
             </div>
         </div>
 
     </div>
-
 
 </aside>
 

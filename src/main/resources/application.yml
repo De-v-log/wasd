@@ -18,11 +18,6 @@ spring:
     data:
         mongodb:
             uri: ${mongo.uri}
-    devtools:
-        livereload:
-            enabled: true
-        restart:
-            enabled: true
     thymeleaf:
         cache: false
         check-template-location: true

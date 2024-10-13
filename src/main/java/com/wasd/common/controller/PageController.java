@@ -22,21 +22,21 @@ public class PageController {
 
     @GetMapping("/main")
     public String mainPage(){
-        return "/pages/main/main";
+        return "/pages/main";
     }
 
-    @GetMapping("/main/profileSetting")
+    @GetMapping("/main/profile")
     public String mainProfileSettingPage(){
-        return "/pages/main/profileSetting";
+        return "/pages/user/profileSetting";
     }
 
     @GetMapping("/main/group")
     public String mainGroupPage(){
-        return "/pages/main/group";
+        return "/pages/group/group";
     }
 
     @GetMapping("/main/group/{groupId}")
     public String mainGroupDetailPage(@PathVariable Long groupId){
-        return "/pages/main/groupDetail";
+        return "/pages/group/groupDetail";
     }
 }
