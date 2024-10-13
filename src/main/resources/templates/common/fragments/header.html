@@ -1,19 +1,32 @@
-<aside class="servers">
-    <div class="servers-collection">
-        <div class="server focusable server-logo unread" role="button" aria-label="Friends unread">
-            <img class="server-logo-img" style="object-fit: contain;" th:src="@{/images/wasd_logo.png}" />
-        </div>
-    </div>
-    <div class="servers-collection">
-        <div class="server focusable unread" role="button" aria-label="Discord Developers unread">
-            <div class="server-icon"><img src="https://i.namu.wiki/i/4E4nlE1MmLw5ENS1wLq-Hzm5Pu40Uef15yoz4vAdKLl1KlkQKxyJF_VNi2rCmaKRkP8Go1pH3eZNCwQ6FwjtkR6mVI4J56gSe4ZDI8QKNlxPHwTwV046qZtviW05mwvz46SVl2mUNf76d0GhkrDhug.svg" /></div>
+<aside class="groups" th:fragment="HeaderFragment">
+
+    <div class="groups-collection">
+        <div class="group profile-setting active" id="main-profile" role="button" attr-url="/main/profile" >
+            <div class="group-icon"><i class="fa-solid fa-gear"></i></div>
         </div>
     </div>
 
-    <div class="servers-collection">
-        <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">
-            <div class="server-icon"><img src="https://e7.pngegg.com/pngimages/636/251/png-clipart-gromit-close-up-at-the-movies-wallace-and-gromit-thumbnail.png" /></div>
+    <div class="groups-collection">
+        <div class="group group-main" role="button" attr-url="/main/group" data-status="3 ONLINE">
+            <div class="group-icon"><i class="fa-solid fa-user-group"></i></div>
         </div>
     </div>
+
+    <div id="myGroups" >
+
+        <div class="groups-collection">
+            <div class="group unread" role="button" attr-url="/main/group/1">
+                <div class="group-icon"><img src="https://i.namu.wiki/i/8-1CX39L9pov7hHdnQ7C_HPNBFwcuk1ToMOoXQfYjcVHOqQeG6rB73jyuCaMvWR1a8Vsufgf1l1werV9ny10_SEHq9hVBsGsI-xdnXNanPkomCr5RBP0YdfS-s6aDHdS-zzyczH3XI6udrwpKeHdqg.svg" /></div>
+            </div>
+        </div>
+
+        <div class="groups-collection">
+            <div class="group unread" role="button" attr-url="/main/group/2">
+                <div class="group-icon"><img src="https://e7.pngegg.com/pngimages/636/251/png-clipart-gromit-close-up-at-the-movies-wallace-and-gromit-thumbnail.png" /></div>
+            </div>
+        </div>
+
+    </div>
+
 </aside>
 

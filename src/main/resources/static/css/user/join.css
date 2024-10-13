@@ -32,7 +32,7 @@
 
 /* step 버튼 활성화 */
 .profile-step-box .profile-step-btn.active {
-    background-color: var(--server-bg-active);
+    background-color: var(--group-bg-active);
 }
 
 /* 프로필 박스 */
@@ -111,7 +111,7 @@
 }
 
 .profile-info-game-btn.select {
-    outline: 3px solid var(--server-bg-active);
+    outline: 3px solid var(--group-bg-active);
 }
 
 /* 게임 버튼 이미지 */
@@ -140,7 +140,7 @@
 }
 
 .game-add-btn {
-    background-color: var(--server-bg-active);
+    background-color: var(--group-bg-active);
     border: none;
     outline: none;
     color: white;

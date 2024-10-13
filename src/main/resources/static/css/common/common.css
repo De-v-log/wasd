@@ -3,33 +3,40 @@
 :root {
     --body-bg: #121416;
     --body-color: #FFF;
-    --servers-bg: #1E2124;
-    --channels-bg: #2E3136;
+
+
     --border-accent: #26282B;
     --chat-bg: #36393E;
     --menu-bg: var(--chat-bg);
-    --server-bg: var(--channels-bg);
-    --server-bg-active: #7289DA;
-    --server-marker-unread: #8A8E94;
-    --server-marker-active: #FFF;
+
+
+    --group-marker-unread: #8A8E94;
+    --group-marker-active: #FFF;
     --button-bg: #2E3136;
     --button-bg-active: #383C3F;
-    --servers-bg-lightened: #24282B;
+    --groups-bg-lightened: #24282B;
+
+    /*--groups-bg: #1E2124;*/
+    --channels-bg: #323840;
+    --group-bg: var(--channels-bg);
+    --group-bg-active: #7289DA;
+    --groups-bg: #202730;
     --input-bg: #3B4859;
-    --back-bg:#2B3440;
+    --back-bg: #2B3440;
 }
-* {  box-sizing: border-box;
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-&:focus
-{
+
+&:focus {
     outline: 0;
 }
 
-html, body
-{
+html, body {
     height: 100%;
     background: var(--back-bg);
     /*background: var(--chat-bg);*/
@@ -40,99 +47,90 @@ html, body
 
 
 /* BUTTON */
-.button
-{
-   background: var(--button-bg);
-   border: 0;
-   color: inherit;
-   cursor: pointer;
-   font: inherit;
-   line-height: normal;
-   overflow: visible;
-   appearance: none;
-   user-select: none;
+.button {
+    background: var(--button-bg);
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    appearance: none;
+    user-select: none;
 
-   > svg, > img
-   {
-       max-width: 100%;
-       max-height: 100%;
-   }
+    > svg, > img {
+        max-width: 100%;
+        max-height: 100%;
+    }
 }
 
-.button-group
-{
-.button:focus, .button:active
-{
-    background: var(--button-bg-active);
-}
+.button-group {
+    .button:focus, .button:active {
+        background: var(--button-bg-active);
+    }
 
-.button:not(:last-of-type)
-{
-    border-right: 1px solid var(--border-accent);
-}
+    .button:not(:last-of-type) {
+        border-right: 1px solid var(--border-accent);
+    }
 
-.button + .button
-{
-    box-shadow: inset 1px 0 0 #393c41;
-}
+    .button + .button {
+        box-shadow: inset 1px 0 0 #393c41;
+    }
 }
 
 /* ICONS */
-svg[id]
-{
-   width: 0;
-   position: absolute;
+svg[id] {
+    width: 0;
+    position: absolute;
 }
 
 /* ANIMATIONS */
-@keyframes server-hover-in
-{
-0% {
-    border-radius: 25px;
-    background-color: var(--server-bg);
+@keyframes group-hover-in {
+    0% {
+        border-radius: 25px;
+        background-color: var(--group-bg);
+    }
+
+    40% {
+        border-radius: 12px;
+    }
+
+    70% {
+        border-radius: 16.7px;
+    }
+
+    80% {
+        background-color: var(--group-bg-active);
+    }
+
+    100% {
+        border-radius: 15px;
+        background-color: var(--group-bg-active);
+    }
 }
 
-40% {
-    border-radius: 12px;
-}
+@keyframes group-hover-out {
+    0% {
+        border-radius: 15px;
+        background-color: var(--group-bg-active);
+    }
 
-70% {
-    border-radius: 16.7px;
-}
+    45% {
+        border-radius: 25px;
+        background-color: var(--group-bg);
+    }
 
-80% {
-    background-color: var(--server-bg-active);
-}
+    65% {
+        border-radius: 25px;
+    }
 
-100% {
-    border-radius: 15px;
-    background-color: var(--server-bg-active);
-}
-}
+    75% {
+        border-radius: 23.5px;
+    }
 
-@keyframes server-hover-out
-{
-0% {
-    border-radius: 15px;
-    background-color: var(--server-bg-active);
-}
-
-45% {
-    border-radius: 25px;
-    background-color: var(--server-bg);
-}
-
-65% {
-    border-radius: 25px;
-}
-
-75% {
-    border-radius: 23.5px;
-}
-
-100% {
-    border-radius: 25px;
-}
+    100% {
+        border-radius: 25px;
+    }
 }
 
 /*input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea {*/
@@ -162,7 +160,8 @@ svg[id]
     pointer-events: none;
     opacity: 0.5;
 }
-.input-wrapper input[type="text"], .input-wrapper select{
+
+.input-wrapper input[type="text"], .input-wrapper select {
     padding: 10px 20px 10px 50px; /* 왼쪽에 아이콘 공간 확보 */
 }
 
@@ -203,6 +202,7 @@ svg[id]
     transition: all .2s;
     opacity: 0.5;
 }
+
 .input-wrapper-ph input:focus ~ label,
 .input-wrapper-ph input:valid ~ label,
 .input-wrapper-ph select:focus ~ label,
@@ -214,7 +214,7 @@ svg[id]
 }
 
 /* 기본 */
-input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea, select  {
+input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea, select {
     background-color: var(--input-bg);
     border: none;
     height: 40px;
@@ -226,6 +226,7 @@ input[type="text"], input[type="password"], input[type="search"], input[type="nu
     vertical-align: middle;
     outline: none;
 }
+
 input[type="text"]::placeholder, select::placeholder {
     color: lightgrey;
     opacity: 0.5;
@@ -237,28 +238,36 @@ select {
     appearance: none; /* 기본 화살표 제거 */
 }
 
-.bt{
+.bt {
     width: 100px;
     height: 40px;
     border-radius: 20px;
     color: white;
-    background-color: var(--server-bg-active);
+    background-color: var(--group-bg-active);
     cursor: pointer;
     border: none;
 }
 
-.bt.bt-gray{
-    background-color: var(--server-marker-unread);
+.bt.bt-gray {
+    background-color: var(--group-marker-unread);
 }
 
-.bt.bt-lightgray{
+.bt.bt-lightgray {
     background-color: lightgray;
 }
 
 /* 공통 스타일 */
-.flex{
+.flex {
     display: flex;
 }
-.flex-direction-col{
+
+.flex-direction-col {
     flex-direction: column;
+}
+
+.content-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
 }

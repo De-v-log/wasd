@@ -2,17 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <!--공통 JS / CSS 영역을 관리하는 환경 영역-->
-<head th:replace="/common/fragments/config :: ConfigFragment">
+<head th:replace="~{/common/fragments/config :: ConfigFragment}">
     <title>WASD</title>
 </head>
 
 <body class="container">
-<!--Header 영역-->
-<header th:replace="/common/fragments/header :: HeaderFragment"></header>
+    <!--Header 영역-->
+<header th:replace="~{/common/fragments/header :: HeaderFragment}"></header>
 
-<!--Content 내용 영역-->
-<th:block layout:fragment="Content"></th:block>
+    <!--Content 내용 영역-->
+    <div class="content-main">
 
+    </div>
 </body>
 </html>
 
