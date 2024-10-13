@@ -1,11 +1,14 @@
 package com.wasd.common.controller;
 
 import com.wasd.config.security.CustomOAuth2User;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Collection;
 
 @Controller
 public class PageController {
@@ -16,6 +19,13 @@ public class PageController {
 
     @GetMapping("/join")
     public String joinPage(Model model, @AuthenticationPrincipal CustomOAuth2User oAuth2User){
+        Collection<? extends GrantedAuthority> authorities = oAuth2User.getAuthorities();
+        boolean isSigned = authorities.stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_USER"));
+        if(isSigned){
+            return "redirect:/main";
+        }
+
         model.addAttribute("oauth", oAuth2User.getUserInfo());
         return "/pages/user/join";
     }

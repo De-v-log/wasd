@@ -2,21 +2,6 @@ let gameInfoCount = 0;
 let gameInfoList = [];
 $(function () {
 
-    // 가입된 사용자인지 확인
-    $.ajax({
-        url: `/user/${oauthUserInfo.id}`
-        ,type: 'get'
-        ,dataType: 'json'
-        ,success: function (res) {
-            if(res.userId){
-                window.location.href = '/main';
-            }
-        },error: function (xhr) {
-            const errorMessage = xhr.responseJSON?.message || '서버 오류가 발생했습니다. 다시 시도해 주세요.';
-            alert(errorMessage);
-        }
-    });
-
     // 프로필 기본 정보 설정
     $('#email').val(oauthUserInfo.email);
     $('#nickname').val(oauthUserInfo.nickname);
