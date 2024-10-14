@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @Controller
 public class PageController {
-    @GetMapping("/login")
+    @GetMapping({"/login", "/"})
     public String loginPage(@AuthenticationPrincipal CustomOAuth2User oAuth2User){
         if (oAuth2User != null) {
             return "redirect:/join";
