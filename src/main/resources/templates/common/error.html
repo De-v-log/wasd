@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:inline="css" th:href="@{/css/common/common.css}" rel="stylesheet"/>
+    <link th:inline="css" th:href="@{/css/common/error.css}" rel="stylesheet"/>
+
+    <meta charset="UTF-8">
+    <title>WASD</title>
+</head>
+<body>
+    <div class="error-container">
+        <h1 id="error-status" th:text="${status}"></h1>
+        <div id="error-msg-box">
+            <p id="error-msg" th:text="${errorMsg}"></p>
+            <p id="error-msg-sub" th:text="${errorMsgSub}"></p>
+        </div>
+        <div id="error-btn-box">
+            <button class="error-btn" onclick="javascript:history.back();">이전</button>
+            <button class="error-btn" onclick="window.location.href='/main'">메인</button>
+        </div>
+    </div>
+</body>
+</html>

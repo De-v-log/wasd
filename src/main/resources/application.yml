@@ -1,5 +1,9 @@
 server:
     port: 8088
+    error:
+      whitelabel:
+          enabled: false
+      throw-exception-if-no-handler-found: true  # 매핑되지 않은 요청에 대해 예외 발생
 spring:
     application:
         name: wasd
