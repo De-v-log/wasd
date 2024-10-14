@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Map;
 
 @Builder
 @Getter
 @ToString
 @AllArgsConstructor
-public class OAuth2UserInfo {
+public class OAuth2UserInfo implements Serializable {
     private String id;
     private String email;
     private String provider;
@@ -31,35 +32,36 @@ public class OAuth2UserInfo {
     private static OAuth2UserInfo ofGoogle(Map<String, Object> attributes) {
         return OAuth2UserInfo.builder()
                 .provider("google")
-                .id("google_" + (String) attributes.get("sub"))
-                .nickname((String) attributes.get("name"))
-                .email((String) attributes.get("email"))
-                .profileImg((String) attributes.get("picture"))
+                .id("google_" + String.valueOf(attributes.get("sub"))) // 안전한 처리
+                .nickname(String.valueOf(attributes.get("name"))) // 안전한 처리
+                .email(String.valueOf(attributes.get("email"))) // 안전한 처리
+                .profileImg(String.valueOf(attributes.get("picture"))) // 안전한 처리
                 .build();
     }
 
     private static OAuth2UserInfo ofKakao(Map<String, Object> attributes) {
+        Map<String, Object> properties = (Map<String, Object>) attributes.get("properties");
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+
         return OAuth2UserInfo.builder()
                 .provider("kakao")
-                .id("kakao_" + attributes.get("id").toString())
-                .nickname((String) ((Map) attributes.get("properties")).get("nickname"))
-                .email((String) ((Map) attributes.get("kakao_account")).get("email"))
-                .profileImg((String) ((Map) attributes.get("properties")).get("profile_image"))
-                // .profileImg((String) ((Map) attributes.get("properties")).get("thumbnail_image"))
+                .id("kakao_" + String.valueOf(attributes.get("id"))) // 안전한 처리
+                .nickname(String.valueOf(properties.get("nickname"))) // 안전한 처리
+                .email(String.valueOf(kakaoAccount.get("email"))) // 안전한 처리
+                .profileImg(String.valueOf(properties.get("profile_image"))) // 안전한 처리
                 .build();
     }
 
     private static OAuth2UserInfo ofNaver(Map<String, Object> attributes) {
-        Map<String, String> res = (Map) attributes.get("response");
+        Map<String, Object> res = (Map<String, Object>) attributes.get("response");
         return OAuth2UserInfo.builder()
                 .provider("naver")
-                .id("naver_" + res.get("id"))
-                .nickname(res.get("name"))
-                .email(res.get("email"))
-                .profileImg(res.get("profile_image"))
+                .id("naver_" + String.valueOf(res.get("id"))) // 안전한 처리
+                .nickname(String.valueOf(res.get("name"))) // 안전한 처리
+                .email(String.valueOf(res.get("email"))) // 안전한 처리
+                .profileImg(String.valueOf(res.get("profile_image"))) // 안전한 처리
                 .build();
     }
-
     public User toEntity(){
         return User.builder()
                 .userId(id)

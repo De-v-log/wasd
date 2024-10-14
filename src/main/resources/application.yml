@@ -9,6 +9,10 @@ spring:
         url: ${psql.url}
         username: ${psql.username}
         password: ${psql.password}
+    session:
+        jdbc:
+          initialize-schema: always
+        timeout: 24h
     jpa:
         hibernate:
             ddl-auto: update
