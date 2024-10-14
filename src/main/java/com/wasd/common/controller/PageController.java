@@ -13,7 +13,11 @@ import java.util.Collection;
 @Controller
 public class PageController {
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(@AuthenticationPrincipal CustomOAuth2User oAuth2User){
+        if (oAuth2User != null) {
+            return "redirect:/join";
+        }
+        // 인증되지 않은 경우 로그인 페이지를 보여줌
         return "/pages/user/login";
     }
 
