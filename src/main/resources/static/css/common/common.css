@@ -42,7 +42,6 @@ html, body {
     /*background: var(--chat-bg);*/
     color: var(--body-color);
     font-size: 16px;
-    font-family: "Roboto";
 }
 
 
@@ -96,7 +95,7 @@ svg[id] {
     }
 
     70% {
-        border-radius: 16.7px;
+        border-radius: 16px;
     }
 
     80% {
@@ -125,7 +124,7 @@ svg[id] {
     }
 
     75% {
-        border-radius: 23.5px;
+        border-radius: 23px;
     }
 
     100% {

@@ -4,15 +4,19 @@
     align-items: center;
     height: 100%;
     justify-content: center;
-    gap: 60px;
+    font-family: 'DOSIyagiMedium';
 }
 
 #error-status{
     font-size: 6rem;
     font-weight: 900;
 }
+#error-img{
+    height: 130px;
+}
 
 #error-msg-box{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -20,23 +24,28 @@
 }
 
 #error-msg{
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 #error-btn-box{
     display: flex;
     gap: 4.5rem;
+    margin-top: 60px;
 }
 
 .error-btn {
-    width: 160px;
-    height: 45px;
-    color: white;
-    background-color: var(--group-bg-active);
-    cursor: pointer;
+    background: none;
     border: none;
-    border-radius: 5px;
-    ont-weight: bold;
-    font-size: 14px;
+    font-size: 1.3rem;
+    font-family: 'DOSIyagiMedium';
+    cursor: pointer;
+    color: white;
+}
+
+
+@font-face {
+    font-family: 'DOSIyagiMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/DOSIyagiMedium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
